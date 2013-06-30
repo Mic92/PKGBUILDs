@@ -1,0 +1,6 @@
+*/pkg/
+*/src/
+/*/*/objects/
+/*/*/hooks/
+*.pkg.tar.xz
+*.src.tar.gz
