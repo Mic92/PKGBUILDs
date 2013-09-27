@@ -1,24 +1,22 @@
 pkgname=dovecot-stemmer
-pkgver=2.2.4
+pkgver=2.2.6
 pkgrel=1
 pkgdesc="dovecot imap server build against libstemmer for improved searching"
 arch=('i686' 'x86_64')
 url="http://dovecot.org/"
 license=("LGPL")
 depends=('krb5' 'openssl' 'sqlite>=3.7.5' 'libmariadbclient'
-        'postgresql-libs>=9.0.3' 'bzip2' 'expat' 'curl' 'snowball-c')
+        'postgresql-libs>=9.0.3' 'bzip2' 'expat' 'curl')
 makedepends=('pam>=1.1.1' 'libcap>=2.19' 'libldap>=2.4.22' 'clucene')
 optdepends=('libldap: ldap plugin'
             'clucene: alternative FTS indexer')
-provides=('imap-server' 'pop3-server' 'dovecot=2.2.4')
-conflicts=('dovecot' 'dovecot-antispam-git' 'dovecot2-antispam-hg' 'dovecot+sieve')
+provides=('imap-server' 'pop3-server' 'dovecot=2.2.6')
+conflicts=('dovecot' 'dovecot-antispam-git' 'aur/dovecot2-antispam-hg' 'dovecot+sieve')
 options=('!libtool')
 install=$pkgname.install
 source=(http://dovecot.org/releases/2.2/dovecot-${pkgver}.tar.gz{,.sig}
         dovecot.tmpfilesd)
-md5sums=('984cfc921a83c580c52c86e128e9dac2'
-         'SKIP'
-         '342a28251d40f983c98c0d1f1bf3d07d')
+#md5sums at the end of file
 
 build() {
   cd ${srcdir}/dovecot-$pkgver
@@ -79,3 +77,6 @@ package() {
   install -d -m755 ${pkgdir}/usr/lib/tmpfiles.d
   install -m 644  ${srcdir}/dovecot.tmpfilesd ${pkgdir}/usr/lib/tmpfiles.d/dovecot.conf
 }
+md5sums=('db65988ef2e6889dd8b49c132b21fc8f'
+         'SKIP'
+         '342a28251d40f983c98c0d1f1bf3d07d')
