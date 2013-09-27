@@ -4,3 +4,5 @@
 /*/*/hooks/
 *.pkg.tar.xz
 *.src.tar.gz
+*.tar.gz.sig
+*.tar.gz
