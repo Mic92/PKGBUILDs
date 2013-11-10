@@ -5,4 +5,10 @@
 *.pkg.tar.xz
 *.src.tar.gz
 *.tar.gz.sig
+*.tar.xz.sig
+*.tar.xz
+*.tar.bz2
 *.tar.gz
+*.tgz
+*.zip
+*.ttf
