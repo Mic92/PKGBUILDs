@@ -1,5 +1,5 @@
 pkgname=coccigrep
-pkgver=20120318
+pkgver=20131117
 pkgrel=1
 pkgdesc="Semantic grep for the C language (git version)"
 url="http://home.regit.org/software/coccigrep/"
