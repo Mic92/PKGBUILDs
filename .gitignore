@@ -12,3 +12,11 @@
 *.tgz
 *.zip
 *.ttf
+
+awesome-luajit-git/awesome
+bozocrack-git/BozoCrack
+coccigrep/coccigrep
+git-pull-request/git-pull-request
+python-mpd2-git/python-mpd2
+python2-mpd2-git/python-mpd2
+vim_bridge-git/vim_bridge
