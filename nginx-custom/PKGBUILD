@@ -26,8 +26,6 @@ _upstreamfair_hash="a18b4099fbd458111983200e098b6f0c8efed4bc"
 _upstreamfair_dirname="ngx_upstreamfair"
 _fancyindex_ver="v0.3.3"
 _fancyindex_dirname="ngx_fancyindex"
-_authpam_ver="1.3"
-_authpam_dirname="ngx_authpam"
 _accesskey_ver="2.0.3"
 _accesskey_dirname="ngx_accesskey"
 _rtmp_ver="v1.1.3"
@@ -43,7 +41,7 @@ pkgrel=1
 pkgdesc="lightweight HTTP server and IMAP/POP3 proxy server with standard, additional and 3d party modules"
 arch=('i686' 'x86_64')
 
-depends=('pcre' 'zlib' 'openssl' 'pam' 'geoip' 'geoip-database' 'gd')
+depends=('pcre' 'zlib' 'openssl' 'geoip' 'geoip-database' 'gd')
 makedepends=(
 	'libxslt'
 	'gd'
@@ -79,7 +77,6 @@ source=("nginx.sh"
 		"${_headersmore_dirname}.source::https://github.com/agentzh/headers-more-nginx-module/tarball/${_headersmore_ver}"
 		"${_echo_dirname}.source::https://github.com/agentzh/echo-nginx-module/tarball/${_echo_ver}"
 		"${_upstreamfair_dirname}.source::https://github.com/gnosek/nginx-upstream-fair/tarball/${_upstreamfair_hash}"
-		"${_authpam_dirname}.tar.gz::http://web.iti.upv.es/~sto/nginx/ngx_http_auth_pam_module-${_authpam_ver}.tar.gz"
 		"${_accesskey_dirname}.tar.gz::http://wiki.nginx.org/images/5/51/Nginx-accesskey-${_accesskey_ver}.tar.gz"
 		"${_rtmp_dirname}.zip::https://github.com/arut/nginx-rtmp-module/archive/${_rtmp_ver}.zip"
 		"${_davext_dirname}.tar.gz::https://github.com/arut/nginx-dav-ext-module/archive/${_davext_ver}.tar.gz"
@@ -98,7 +95,6 @@ md5sums=('d56559ed5e8cc0b1c7adbe33f2300c4c'
          'bb207bb9e0e2a5d85ff7645084879d5f'
          '906307825b04f45fe75c7357746b032c'
          'ac5e7f485476af70e0ee1c52016cddaf'
-         'bf3c3389353f11f5f2047b67ce08ba79'
          '9b5304346d5139b1841f5baa01ab0cbe'
          'd77615ec7f5387f37a74e404050d49ee'
          '2cb502dbda335be4ebd5fed0b3182bae'
@@ -115,7 +111,6 @@ build() {
 	mv agentzh-echo-nginx-module-* ${_echo_dirname}
 	mv masterzen-nginx-upload-progress-module-* ${_uploadprogress_dirname}
 	mv gnosek-nginx-upstream-fair-* ${_upstreamfair_dirname}
-	mv ngx_http_auth_pam_module-${_authpam_ver} ${_authpam_dirname}
 	mv nginx-accesskey* ${_accesskey_dirname}
 	mv nginx-rtmp-module* ${_rtmp_dirname}
 	mv nginx-dav-ext-module* ${_davext_dirname}
@@ -168,7 +163,6 @@ build() {
 		--add-module=../${_uploadprogress_dirname} \
 		--add-module=../${_upstreamfair_dirname} \
 		--add-module=../${_fancyindex_dirname} \
-		--add-module=../${_authpam_dirname} \
 		--add-module=../${_accesskey_dirname} \
 		--add-module=../${_rtmp_dirname} \
 		--add-module=../${_davext_dirname}
