@@ -1,0 +1,34 @@
+pkgname=gpodder3
+_pkgname=gpodder
+pkgver=3.7.0
+pkgrel=1
+pkgdesc='A podcast receiver/catcher'
+license=('GPL3')
+arch=('any')
+url='http://gpodder.org/'
+conflicts=('gpodder' 'gpodder2' 'gpodder-git')
+depends=('iproute2' 'pygtk' 'python2-dbus' 'python2-feedparser' 'python2-mygpoclient')
+makedepends=('intltool' 'imagemagick' 'help2man')
+optdepends=('libgpod: for ipod support'
+            'pymad: for ipod support'
+            'mplayer: for ipod video support'
+            'python-imaging: rockbox cover art support'
+            'vorbis-tools: for ogg tag updating and converting to mp3'
+            'lame: for converting ogg to mp3'
+            'gnome-bluetooth: transfer podcast via bluethooth'
+            'pywebkitgtk: render shownotes'
+            'python2-eyed3: for ipod support'
+            'pymtp: for mtp support')
+source=("${_pkgname}-${pkgver}.tar.gz::http://${_pkgname}.org/source/${pkgver}")
+install=gpodder.install
+md5sums=('f5984081888dfa64507a45ca388e8153')
+
+package() {
+  cd "${srcdir}/${_pkgname}-${pkgver}"
+
+  PYTHON=python2 DESTDIR=${pkgdir} make install || return 1
+
+  sed -i -e 's|#!/usr/bin/python$|#!/usr/bin/python2|' \
+         -e 's|#!/usr/bin/env python$|#!/usr/bin/env python2|' \
+    $(find $pkgdir/usr/lib/python2.7/site-packages/gpodder/ -name '*.py')
+}
