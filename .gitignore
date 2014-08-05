@@ -3,6 +3,7 @@
 /*/*/objects/
 /*/*/hooks/
 *.pkg.tar.xz
+*.pkg.tar
 *.src.tar.gz
 *.tar.gz.sig
 *.tar.xz.sig
