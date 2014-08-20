@@ -43,7 +43,7 @@ pkgrel=1
 pkgdesc="lightweight HTTP server and IMAP/POP3 proxy server with standard, additional and 3d party modules"
 arch=('i686' 'x86_64')
 
-depends=('pcre' 'zlib' 'openssl' 'pam' 'geoip' 'geoip-database')
+depends=('pcre' 'zlib' 'openssl' 'pam' 'geoip' 'geoip-database' 'libxslt')
 makedepends=(
 	'libxslt'
 	'git'

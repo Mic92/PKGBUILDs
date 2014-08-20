@@ -33,7 +33,8 @@ makedepends=('apache' 'imap' 'postgresql-libs' 'libldap' 'postfix' 'libvpx'
 source=("http://www.php.net/distributions/${pkgbase}-${pkgver}.tar.gz"
         "http://www.php.net/distributions/${pkgbase}-${pkgver}.tar.gz.asc"
         'php.ini.patch' 'apache.conf' 'php-fpm.conf.in.patch'
-        'logrotate.d.php-fpm' 'php-fpm.service' 'php-fpm.tmpfiles')
+        'logrotate.d.php-fpm' 'php-fpm.service' 'php-fpm.tmpfiles'
+        'socket-activation-build.patch' 'socket-activation.patch')
 md5sums=('63b56e64e7c25b1c6dcdf778333dfa24'
          'SKIP'
          '510f9092ebfe6e378e12817e197a88b6'
@@ -48,6 +49,8 @@ prepare() {
 
 	patch -p0 -i ${srcdir}/php.ini.patch
 	patch -p0 -i ${srcdir}/php-fpm.conf.in.patch
+	patch -p0 -i ${srcdir}/socket-activation-build.patch
+	patch -p0 -i ${srcdir}/socket-activation.patch
 	# Just because our Apache 2.4 is configured with a threaded MPM by default does not mean we want to build a ZTS PHP.
 	# Let's supress this behaviour and build a SAPI that works fine with the prefork MPM.
 	sed '/APACHE_THREADED_MPM=/d' -i sapi/apache2handler/config.m4 -i configure
@@ -355,3 +358,13 @@ package_php-xsl() {
 	pkgdesc='xsl module for PHP'
 	install -D -m755 ${srcdir}/build-php/modules/xsl.so ${pkgdir}/usr/lib/php/modules/xsl.so
 }
+md5sums=('63b56e64e7c25b1c6dcdf778333dfa24'
+         'SKIP'
+         '510f9092ebfe6e378e12817e197a88b6'
+         'dec2cbaad64e3abf4f0ec70e1de4e8e9'
+         '6bc1fc4ceee039d21ff3b56aa845cc5a'
+         '25bc67ad828e8147a817410b68d8016c'
+         'cc2940f5312ba42e7aa1ddfab74b84c4'
+         'c60343df74f8e1afb13b084d5c0e47ed'
+         'e03573b237a63f715fc9b56e04014d38'
+         '47bc010be73566c402514f6e65f888c8')
