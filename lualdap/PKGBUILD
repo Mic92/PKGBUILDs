@@ -2,12 +2,12 @@
 
 pkgname=lualdap
 pkgver=1.1.0
-pkgrel=2
+pkgrel=3
 pkgdesc="A Lua interface to the OpenLDAP library"
 arch=('i686' 'x86_64')
 url="http://www.keplerproject.org/lualdap/"
 license=('custom')
-depends=('lua' 'libldap')
+depends=('lua51')
 # http://luaforge.net/frs/?group_id=14 for latest download ID
 source=(
     "http://luaforge.net/frs/download.php/2998/lualdap-1.1.0.tar.gz"
@@ -16,8 +16,6 @@ source=(
     "Makefile.patch"
 #    "lualdap.patch"
 )
-
-set -x
 
 build() {
     cd $srcdir/$pkgname-$pkgver
