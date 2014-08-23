@@ -1,0 +1,16 @@
+# Maintainer: Markus Bergholz <markuman@gmail.com>
+pkgname=prosody-mod-carbons
+pkgver=hg
+pkgrel=2
+pkgdesc="XEP-0280: Message Carbons"
+arch=('any')
+url="http://code.google.com/p/prosody-modules/wiki/mod_carbons"
+license=('MIT')
+depends=('prosody')
+source=("https://prosody-modules.googlecode.com/hg/mod_carbons/mod_carbons.lua")
+sha1sums=('0cb06a727b029c2249b021951bda272f9d572b48')
+package() {
+  install -Dm 644 "mod_carbons.lua" "${pkgdir}/usr/lib/prosody/modules/mod_carbons.lua"
+}
+sha1sums=('97af62bb5a537bb41be92ce296c5546de0c238e1')
+sha1sums=('97af62bb5a537bb41be92ce296c5546de0c238e1')
