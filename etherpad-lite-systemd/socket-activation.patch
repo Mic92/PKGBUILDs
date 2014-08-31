@@ -1,0 +1,32 @@
+--- src/package.json	2014-03-30 15:11:50.000000000 +0200
++++ src/package.json	2014-08-31 22:32:32.215757743 +0200
+@@ -40,7 +40,9 @@
+                       "swagger-node-express"    : "1.2.3",
+                       "channels"                : "0.0.x",
+                       "jsonminify"              : "0.2.2",
+-                      "measured"                : "0.1.3"
++                      "measured"                : "0.1.3",
++                      "systemd"                 : "0.2.6",
++                      "autoquit"                : "0.1.6"
+                      },
+   "bin":             { "etherpad-lite": "./node/server.js" },
+   "devDependencies": {
+--- src/node/hooks/express.js	2014-03-30 15:11:50.000000000 +0200
++++ src/node/hooks/express.js	2014-08-31 22:35:52.566054425 +0200
+@@ -5,6 +5,8 @@
+ var path = require('path');
+ var npm = require("npm/lib/npm.js");
+ var  _ = require("underscore");
++require('systemd');
++require('autoquit');
+ 
+ var server;
+ var serverName;
+@@ -84,5 +86,6 @@
+   });
+   hooks.callAll("expressCreateServer", {"app": app, "server": server});
+ 
+-  server.listen(settings.port, settings.ip);
++  server.autoQuit({ timeout: 300 });
++  server.listen("systemd");
+ }
