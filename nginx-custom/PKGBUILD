@@ -37,9 +37,11 @@ _davext_dirname="ngx_daxext"
 _naxsi_ver="0.53-2"
 _naxsi_dirname="ngx_naxsi"
 
+_authldap_dirname="ngx-authldap"
+
 pkgname=nginx-custom
 pkgver=1.6.1
-pkgrel=1
+pkgrel=2
 pkgdesc="lightweight HTTP server and IMAP/POP3 proxy server with standard, additional and 3d party modules"
 arch=('i686' 'x86_64')
 
@@ -83,6 +85,7 @@ source=("nginx.sh"
 		"${_rtmp_dirname}.zip::https://github.com/arut/nginx-rtmp-module/archive/${_rtmp_ver}.zip"
 		"${_davext_dirname}.tar.gz::https://github.com/arut/nginx-dav-ext-module/archive/${_davext_ver}.tar.gz"
 		"${_naxsi_dirname}.tar.gz::https://github.com/nbs-system/naxsi/archive/${_naxsi_ver}.tar.gz"
+		"${_authldap_dirname}.tar.gz::https://github.com/kvspb/nginx-auth-ldap/archive/master.tar.gz"
 )
 
 md5sums=('d56559ed5e8cc0b1c7adbe33f2300c4c'
@@ -101,7 +104,8 @@ md5sums=('d56559ed5e8cc0b1c7adbe33f2300c4c'
          '9b5304346d5139b1841f5baa01ab0cbe'
          '1551bfd19b7a1d8d42ce7ac1f1b75618'
          '2cb502dbda335be4ebd5fed0b3182bae'
-         '348b50914a1eedaed09a2509621adf43')
+         '348b50914a1eedaed09a2509621adf43'
+         '3e3d44d2eea10b688a5ecdee98165dcf')
 
 build() {
 	local _src_dir="${srcdir}/${_pkgname}-${pkgver}"
@@ -118,10 +122,10 @@ build() {
 	mv nginx-rtmp-module* ${_rtmp_dirname}
 	mv nginx-dav-ext-module* ${_davext_dirname}
 	mv naxsi* ${_naxsi_dirname}
+	mv nginx-auth-ldap-master ${_authldap_dirname}
 
 	cd $_src_dir
-
-	./configure \
+		CORE_LINK="$LD_FLAGS -llber" ./configure \
 		--prefix="/${_conf_path}" \
 		--conf-path="/${_conf_path}/nginx.conf" \
 		--sbin-path="/usr/bin/${_pkgname}" \
@@ -168,7 +172,8 @@ build() {
 		--add-module=../${_authpam_dirname} \
 		--add-module=../${_accesskey_dirname} \
 		--add-module=../${_rtmp_dirname} \
-		--add-module=../${_davext_dirname}
+		--add-module=../${_davext_dirname} \
+		--add-module=../${_authldap_dirname}
 
 	make
 }
