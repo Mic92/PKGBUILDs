@@ -3,8 +3,8 @@
 # Maintainer: Jonas Heinrich <onny@project-insanity.org>
 
 pkgname=etherpad-lite-systemd
-pkgver=1.4.0
-pkgrel=2
+pkgver=1.4.1
+pkgrel=1
 pkgdesc="etherpad-lite with systemd socket-activation"
 arch=(any)
 url="http://etherpad.org"
@@ -21,21 +21,19 @@ source=("etherpad-lite-${pkgver}.tar.gz::https://github.com/ether/etherpad-lite/
   "etherpad-lite.service"
   "etherpad-lite.tmpfile.d"
   "etherpad-lite.socket"
-  "socket-activation.patch")
-sha512sums=('9f07b12ef5079d0fc02bb0ac3339b290501fef5fcb262ee109132cbb967506305aa6faef008d4694fb99f42b69f5aba9e3f4c6eb1865d7b269bbc6d00c313385'
-  '5f1273a9effcc17c81cdc275a97c4f29ad6145f42969fb1c06d5e963300908717d018cc2c0ce26a5b1ad8b86dfea6dd9159dd528a6585307c4079b5b4417b0d6'
-  '8172f4fc2d1f394046cb9215b50917cc5f42559d030b408c5c1919e3b62e53776d56ec00674260a332533545aa08160993e8c61663ce2786c9d97a2dafd560e4'
-  'SKIP'
-  'SKIP')
+  "socket-activation.patch"
+  "npm-version-detection.patch")
 
 prepare() {
   cd "$srcdir/etherpad-lite-${pkgver}"
   sed -i "s/9001/19001/" settings.json.template
   patch -p0 -i "$srcdir/socket-activation.patch"
+  patch -p0 -i "$srcdir/npm-version-detection.patch"
 }
 
 build() {
   cd "$srcdir/etherpad-lite-${pkgver}"
+  export PYTHON=python2.7
   ./bin/installDeps.sh
 }
 
@@ -49,3 +47,9 @@ package() {
   install -Dm644 "${srcdir}"/etherpad-lite.tmpfile.d "${pkgdir}"/usr/lib/tmpfiles.d/etherpad-lite.conf
   install -D LICENSE "${pkgdir}"/usr/share/licenses/etherpad-lite/LICENSE
 }
+md5sums=('2d6f511d80e45e365abd198d6473fbb7'
+         '6204c73a5d04019e09ef86e1d0a1a61a'
+         '791f86b93e33c28625e2f5fde36033c9'
+         '987fe3ab72dc495c7e8101658ff673ea'
+         '344ee2e6498993105da958b9049cb109'
+         'f48233bdead53edf33323ac0406cefbb')
