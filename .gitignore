@@ -13,6 +13,7 @@
 *.tgz
 *.zip
 *.ttf
+*.AURINFO
 
 awesome-luajit-git/awesome
 bozocrack-git/BozoCrack
