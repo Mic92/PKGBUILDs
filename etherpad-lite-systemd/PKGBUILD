@@ -3,7 +3,7 @@
 # Maintainer: Jonas Heinrich <onny@project-insanity.org>
 
 pkgname=etherpad-lite-systemd
-pkgver=1.4.1
+pkgver=1.5.1
 pkgrel=1
 pkgdesc="etherpad-lite with systemd socket-activation"
 arch=(any)
@@ -18,17 +18,15 @@ conflicts=('etherpad-lite-git')
 backup=(usr/share/webapps/etherpad-lite/settings.json)
 install='etherpad-lite.install'
 source=("etherpad-lite-${pkgver}.tar.gz::https://github.com/ether/etherpad-lite/archive/${pkgver}.tar.gz"
-  "etherpad-lite.service"
-  "etherpad-lite.tmpfile.d"
-  "etherpad-lite.socket"
-  "socket-activation.patch"
-  "npm-version-detection.patch")
+        "etherpad-lite.service"
+        "etherpad-lite.tmpfile.d"
+        "etherpad-lite.socket"
+        "socket-activation.patch")
 
 prepare() {
   cd "$srcdir/etherpad-lite-${pkgver}"
   sed -i "s/9001/19001/" settings.json.template
   patch -p0 -i "$srcdir/socket-activation.patch"
-  patch -p0 -i "$srcdir/npm-version-detection.patch"
 }
 
 build() {
@@ -47,9 +45,8 @@ package() {
   install -Dm644 "${srcdir}"/etherpad-lite.tmpfile.d "${pkgdir}"/usr/lib/tmpfiles.d/etherpad-lite.conf
   install -D LICENSE "${pkgdir}"/usr/share/licenses/etherpad-lite/LICENSE
 }
-md5sums=('2d6f511d80e45e365abd198d6473fbb7'
+md5sums=('2490270dc1f8c04bd7604d51ac0e4aee'
          '6204c73a5d04019e09ef86e1d0a1a61a'
          '791f86b93e33c28625e2f5fde36033c9'
          '987fe3ab72dc495c7e8101658ff673ea'
-         '344ee2e6498993105da958b9049cb109'
-         'f48233bdead53edf33323ac0406cefbb')
+         '50476ce9e5c1b9bd53063bb875972be7')
