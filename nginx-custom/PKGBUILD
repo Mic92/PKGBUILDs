@@ -41,7 +41,7 @@ _naxsi_dirname="ngx_naxsi"
 
 pkgname=nginx-custom
 pkgver=1.6.2
-pkgrel=2
+pkgrel=3
 pkgdesc="lightweight HTTP server and IMAP/POP3 proxy server with standard, additional and 3d party modules"
 arch=('i686' 'x86_64')
 
@@ -86,7 +86,8 @@ source=("nginx.sh"
 		"${_rtmp_dirname}.zip::https://github.com/arut/nginx-rtmp-module/archive/${_rtmp_ver}.zip"
 		"${_davext_dirname}.tar.gz::https://github.com/arut/nginx-dav-ext-module/archive/${_davext_ver}.tar.gz"
 		"${_naxsi_dirname}.tar.gz::https://github.com/nbs-system/naxsi/archive/${_naxsi_ver}.tar.gz"
-    "git+https://github.com/kvspb/nginx-auth-ldap.git"
+		"git+https://github.com/kvspb/nginx-auth-ldap.git"
+		"git+https://github.com/giom/nginx_accept_language_module.git"
 )
 
 md5sums=('d56559ed5e8cc0b1c7adbe33f2300c4c'
@@ -106,6 +107,7 @@ md5sums=('d56559ed5e8cc0b1c7adbe33f2300c4c'
          '6f00cba85c7248aa433526094228750a'
          '2cb502dbda335be4ebd5fed0b3182bae'
          '348b50914a1eedaed09a2509621adf43'
+         'SKIP'
          'SKIP')
 
 build() {
@@ -175,7 +177,8 @@ build() {
 		--add-module=../${_accesskey_dirname} \
 		--add-module=../${_rtmp_dirname} \
 		--add-module=../${_davext_dirname} \
-		--add-module=../nginx-auth-ldap
+		--add-module=../nginx-auth-ldap \
+		--add-module=../nginx_accept_language_module
 
 	make
 }
@@ -198,7 +201,7 @@ package() {
 	install -D -m555 "${srcdir}/nginx.sh" "${pkgdir}/etc/rc.d/${_pkgname}"
 	install -D -m644 "${srcdir}/nginx.logrotate" "${pkgdir}/etc/logrotate.d/${_pkgname}"
 	install -D -m644 "${srcdir}/nginx.conf" "${pkgdir}/etc/conf.d/${_pkgname}"
-	install -D -m644 "${srcdir}/nginx.service" "${pkgdir}/lib/systemd/system/nginx.service"
+	install -D -m644 "${srcdir}/nginx.service" "${pkgdir}/usr/lib/systemd/system/nginx.service"
 	install -D -m644 "LICENSE" "${pkgdir}/usr/share/licenses/${_pkgname}/LICENSE"
 	install -D -m644 "man/nginx.8" "${pkgdir}/usr/share/man/man8/nginx.8"
 }
