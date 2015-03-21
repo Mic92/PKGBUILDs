@@ -1,0 +1,30 @@
+pkgname=nsattach
+pkgver=0.0.1
+pkgrel=1
+pkgdesc='attach to linux namespaces'
+arch=('i686' 'x86_64')
+license=('GPL')
+url='https://github.com/Mic92/nsattach'
+makedepends=('autoconf' 'automake' 'git')
+source=(git+https://github.com/Mic92/nsattach)
+md5sums=('SKIP')
+
+prepare() {
+  cd nsattach
+
+  git log -1 --format='%cd' --date=short | tr -d -- '-'
+}
+
+build() {
+  cd nsattach
+
+  ./autogen.sh
+  ./configure --prefix=/usr
+  make
+}
+
+package() {
+  cd nsattach
+
+  make DESTDIR="${pkgdir}" install
+}
