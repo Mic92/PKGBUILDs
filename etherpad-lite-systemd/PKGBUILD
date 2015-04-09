@@ -1,27 +1,28 @@
-# Contributor: Jonas Heinrich <onny@project-insanity.org>
-# Contributor: Timothée Ravier <tim@siosm.fr>
-# Maintainer: Jonas Heinrich <onny@project-insanity.org>
+# Contributions by: Timothée Ravier <tim@siosm.fr>, Jonas Heinrich <onny@project-insanity.org>
+# Maintainer: Ruben Kelevra <ruben@freifunk-nrw.de>
 
 pkgname=etherpad-lite-systemd
 pkgver=1.5.1
-pkgrel=1
+pkgrel=2
 pkgdesc="etherpad-lite with systemd socket-activation"
 arch=(any)
 url="http://etherpad.org"
 _watch=('http://etherpad.org','Documentation <small>v([\d.]*)</small>')
 license=('GPL2')
-depends=('curl' 'python2' 'openssl' 'nodejs')
+depends=('curl' 'python2' 'openssl' 'nodejs<0.13.0' 'git')
 optdepends=('sqlite: to use sqlite as databse'
-            'mariadb: to use mysql/mariadb as database'
+            'mariadb: to use mariadb as database'
             'postgresql: to use postgresql as database')
 conflicts=('etherpad-lite-git')
-backup=(usr/share/webapps/etherpad-lite/settings.json)
+backup=('usr/share/webapps/etherpad-lite/settings.json'
+        'etc/webapps/etherpad-lite/settings.json')
 install='etherpad-lite.install'
 source=("etherpad-lite-${pkgver}.tar.gz::https://github.com/ether/etherpad-lite/archive/${pkgver}.tar.gz"
         "etherpad-lite.service"
         "etherpad-lite.tmpfile.d"
         "etherpad-lite.socket"
-        "socket-activation.patch")
+        "socket-activation.patch"
+        "0001-support-node-v0.12.x.patch::https://github.com/ether/etherpad-lite/commit/0505a4735686322639981f0564757e4543f2706d.patch")
 
 prepare() {
   cd "$srcdir/etherpad-lite-${pkgver}"
@@ -31,22 +32,37 @@ prepare() {
 
 build() {
   cd "$srcdir/etherpad-lite-${pkgver}"
+  patch -p1 < "${srcdir}/0001-support-node-v0.12.x.patch"
   export PYTHON=python2.7
   ./bin/installDeps.sh
 }
 
 package() {
   cd "$srcdir/etherpad-lite-${pkgver}"
-  rm -r start.bat var
+  echo 'cleaning up unneeded files...'
+  rm bin/installOnWindows.bat start.bat bin/buildDebian.sh bin/buildForWindows.sh  
+  rm -r var bin/deb-src doc 
+  echo 'move files...'
   install -dm 755 "${pkgdir}"/usr/share/webapps/etherpad-lite
   cp -a . "${pkgdir}"/usr/share/webapps/etherpad-lite
+  mkdir -p "${pkgdir}"/etc/webapps/etherpad-lite
+  mv "${pkgdir}"/usr/share/webapps/etherpad-lite/settings.json "${pkgdir}"/etc/webapps/etherpad-lite/settings.json
+  ln -s /etc/webapps/etherpad-lite/settings.json "${pkgdir}"/usr/share/webapps/etherpad-lite/settings.json
   install -Dm644 "${srcdir}"/etherpad-lite.service "${pkgdir}"/usr/lib/systemd/system/etherpad-lite.service
   install -Dm644 "${srcdir}"/etherpad-lite.socket "${pkgdir}"/usr/lib/systemd/system/etherpad-lite.socket
-  install -Dm644 "${srcdir}"/etherpad-lite.tmpfile.d "${pkgdir}"/usr/lib/tmpfiles.d/etherpad-lite.conf
-  install -D LICENSE "${pkgdir}"/usr/share/licenses/etherpad-lite/LICENSE
+  install -Dm644 "${srcdir}"/etherpad-lite.service "${pkgdir}"/usr/lib/systemd/system/etherpad-lite.service
+  install -D LICENSE 	"${pkgdir}"/usr/share/licenses/etherpad-lite/LICENSE
+  echo "setting rights..."
+  #touch "${pkgdir}"/usr/share/webapps/etherpad-lite/APIKEY.txt
+  find "${pkgdir}"/usr/share/webapps/etherpad-lite \
+      \( -type f -exec chmod ug+rw,o+r {} \; \) , \
+      \( -type d -exec chmod ug+rwxs,o+rx {} \; \)
+  chmod u+x "${pkgdir}"/usr/share/webapps/etherpad-lite/bin/run.sh
+  chmod u+x "${pkgdir}"/usr/share/webapps/etherpad-lite/bin/installDeps.sh
 }
 md5sums=('2490270dc1f8c04bd7604d51ac0e4aee'
          '6204c73a5d04019e09ef86e1d0a1a61a'
          '791f86b93e33c28625e2f5fde36033c9'
          '987fe3ab72dc495c7e8101658ff673ea'
-         '50476ce9e5c1b9bd53063bb875972be7')
+         '50476ce9e5c1b9bd53063bb875972be7'
+         'df122d05d6b13979c0846681be1f4a77')
