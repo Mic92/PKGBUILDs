@@ -2,8 +2,8 @@
 # Maintainer: Ruben Kelevra <ruben@freifunk-nrw.de>
 
 pkgname=etherpad-lite-systemd
-pkgver=1.5.1
-pkgrel=2
+pkgver=1.5.2
+pkgrel=1
 pkgdesc="etherpad-lite with systemd socket-activation"
 arch=(any)
 url="http://etherpad.org"
@@ -60,9 +60,21 @@ package() {
   chmod u+x "${pkgdir}"/usr/share/webapps/etherpad-lite/bin/run.sh
   chmod u+x "${pkgdir}"/usr/share/webapps/etherpad-lite/bin/installDeps.sh
 }
-md5sums=('2490270dc1f8c04bd7604d51ac0e4aee'
+md5sums=('d218b5b2d6c1e9390e314df78a507165'
          '6204c73a5d04019e09ef86e1d0a1a61a'
          '791f86b93e33c28625e2f5fde36033c9'
          '987fe3ab72dc495c7e8101658ff673ea'
          '50476ce9e5c1b9bd53063bb875972be7'
          'df122d05d6b13979c0846681be1f4a77')
+sha1sums=('8e2e55f6e4c4237028e0a6e9f2b66b88455f415e'
+          'a6fdde2ccbe4044e7679d3d0d45f7c54e1d703d6'
+          'f8ebd677d6f72b485c64b174389d94eb92a06955'
+          '8768c601d7920427c6906a5ac3eca8f725981a2c'
+          '24f76b29a17ac9eba704913d136a54968d1152c0'
+          '0934f543264afba5b458d074407ef9bb969f2a00')
+sha256sums=('6bdfc3c22a36fd98e72e68e0be4a889d1611b7b1d10e7ebe6dffd1c09bf54bc2'
+            '0eafab2c0385ac8b5b70c5a6e7db502304a0c9accc13a5155cb02f84fb241b0d'
+            'f6537913af34faa0b6fc20badbadc8e87595c1a204a6d01719c2c69711eb717f'
+            '0b6f0f45e4892649e442f6082150c3181352a356926be959a72c9e9dca7973b1'
+            'e1f7cda94688788f2c8a988312ba712f8467c66e702eef275faf03eda4410f36'
+            'b72735d8bd12a41cbd7700992a5403df264ad768f25483297298916126fb9163')
