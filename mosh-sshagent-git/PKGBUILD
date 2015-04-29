@@ -4,7 +4,7 @@
 pkgname=mosh-sshagent-git
 pkgver=20150210
 pkgrel=1
-pkgdesc="Mobile shell, surviving disconnects with local echo and line editing, development version"
+pkgdesc="Mobile shell with support for ssh-agent-forwarding and out-of-band"
 arch=('i686' 'x86_64' 'arm')
 url="http://mosh.mit.edu/"
 license=('GPL3')
