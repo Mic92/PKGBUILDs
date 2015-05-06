@@ -1,5 +1,5 @@
 pkgname=docker-zfs
-pkgver=1.4.1.dev.13116.c323cf0
+pkgver=1.7.0.dev.15080.d5aa100
 pkgrel=1
 epoch=1
 pkgdesc='docker with experimental support for zfs (does not conflict with docker package)'
@@ -28,6 +28,9 @@ build() {
   cd docker
   export AUTO_GOPATH=1
   ./hack/make.sh dynbinary
+  for i in docs/man/*.md; do
+    go-md2man -in "$i" -out "${i%.md}"
+  done
 }
 
 package() {
@@ -41,6 +44,13 @@ package() {
   # systemd
   install -Dm644 "$srcdir/docker.service" "$pkgdir/usr/lib/systemd/system/docker-zfs.service"
   install -Dm644 "$srcdir/docker.conf" "$pkgdir/etc/sysctl.d/docker-zfs.conf"
+
+  cd docs/man
+  for section in 1 5; do
+    for i in *.$section; do
+      install -Dm644 "$i" "$pkgdir/usr/share/man/man$section/$i"
+    done
+  done
 }
 md5sums=('SKIP'
          '25dd8ecbc426b4fe445f2e4f21d596ef'
