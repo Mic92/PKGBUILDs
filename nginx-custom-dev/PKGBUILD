@@ -90,26 +90,6 @@ source=("nginx.sh"
 		"git+https://github.com/giom/nginx_accept_language_module.git"
 )
 
-md5sums=('d56559ed5e8cc0b1c7adbe33f2300c4c'
-         '845cab784b50f1666bbf89d7435ac7af'
-         'ab1eb640c978536c1dad16674d6b3c3c'
-         '6696dc228a567506bca3096b5197c9db'
-         '9120b06539e7acb25712a9c5e4711d22'
-         '6d28dfd6cef1f130a1df97d61425798c'
-         '3d4ec04bbc16c3b555fa20392c1119d1'
-         '68a1af12d5c1218fb2b3e05ed7ff6f0c'
-         'f7dee95dbe8ada5f4d8e9d59ca1f4797'
-         '10e178b0cecf6ce891ee297d32ba2f14'
-         '1ba466e7efc03cd9934dd711ce9d84e7'
-         'ac5e7f485476af70e0ee1c52016cddaf'
-         'a5c0fb3af7158297c1457739947b9b0c'
-         '9b5304346d5139b1841f5baa01ab0cbe'
-         'd21f104ba533a681f6300a96dd989479'
-         '2cb502dbda335be4ebd5fed0b3182bae'
-         '348b50914a1eedaed09a2509621adf43'
-         'SKIP'
-         'SKIP')
-
 build() {
 	local _src_dir="${srcdir}/${_pkgname}-${pkgver}"
 
@@ -207,3 +187,21 @@ package() {
 	install -D -m644 "man/nginx.8" "${pkgdir}/usr/share/man/man8/nginx.8"
 }
 
+md5sums=('d56559ed5e8cc0b1c7adbe33f2300c4c'
+         '845cab784b50f1666bbf89d7435ac7af'
+         'ab1eb640c978536c1dad16674d6b3c3c'
+         '6696dc228a567506bca3096b5197c9db'
+         'd1b55031ae6e4bce37f8776b94d8b930'
+         '3087820bd0b9e657963a44f322a2fd4c'
+         '82c6281e14ffee73e0ad69c134d6e5e1'
+         '68a1af12d5c1218fb2b3e05ed7ff6f0c'
+         'f7dee95dbe8ada5f4d8e9d59ca1f4797'
+         '10e178b0cecf6ce891ee297d32ba2f14'
+         '558e01bfc0a412c33853e6d865b9b097'
+         'ac5e7f485476af70e0ee1c52016cddaf'
+         'bf3c3389353f11f5f2047b67ce08ba79'
+         '9b5304346d5139b1841f5baa01ab0cbe'
+         'b072d0524ab76e95fa8ffd1ddcd68a50'
+         '2cb502dbda335be4ebd5fed0b3182bae'
+         '348b50914a1eedaed09a2509621adf43'
+         'SKIP')
