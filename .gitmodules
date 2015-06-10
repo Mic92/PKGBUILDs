@@ -1,0 +1,63 @@
+[submodule "ca-certificates-dn42"]
+	path = ca-certificates-dn42
+	url = ssh+git://aur@aur4.archlinux.org/ca-certificates-dn42.git/
+[submodule "awesome-luajit-git"]
+	path = awesome-luajit-git
+	url = ssh+git://aur@aur4.archlinux.org/awesome-luajit-git.git
+[submodule "bozocrack-git"]
+	path = bozocrack-git
+	url = ssh+git://aur@aur4.archlinux.org/bozocrack-git.git/
+[submodule "dovecot-stemmer"]
+	path = dovecot-stemmer
+	url = ssh+git://aur@aur4.archlinux.org/dovecot-stemmer.git/
+[submodule "git-pull-request"]
+	path = git-pull-request
+	url = ssh://aur@aur4.archlinux.org/git-pull-request.git
+[submodule "gpodder3"]
+	path = gpodder3
+	url = ssh://aur@aur4.archlinux.org/gpodder3.git
+[submodule "jabber-migrate"]
+	path = jabber-migrate
+	url = ssh://aur@aur4.archlinux.org/jabber-migrate.git
+[submodule "mosh-sshagent-git"]
+	path = mosh-sshagent-git
+	url = ssh://aur@aur4.archlinux.org/mosh-sshagent-git.git
+[submodule "openssh-ldap-helper"]
+	path = openssh-ldap-helper
+	url = ssh://aur@aur4.archlinux.org/openssh-ldap-helper.git
+[submodule "etherpad-lite-systemd"]
+	path = etherpad-lite-systemd
+	url = ssh://aur@aur4.archlinux.org/etherpad-lite-systemd.git
+[submodule "prosody-mod-mam-hg"]
+	path = prosody-mod-mam-hg
+	url = ssh://aur@aur4.archlinux.org/prosody-mod-mam-hg.git
+[submodule "python2-lxc-git"]
+	path = python2-lxc-git
+	url = ssh+git://aur@aur4.archlinux.org/python2-lxc-git.git/
+[submodule "netctl-eduroam"]
+	path = netctl-eduroam
+	url = ssh+git://aur@aur4.archlinux.org/netctl-eduroam/
+[submodule "python2-mpd2-git"]
+	path = python2-mpd2-git
+	url = ssh+git://aur@aur4.archlinux.org/python2-mpd2-git/
+[submodule "python-mpd2-git"]
+	path = python-mpd2-git
+	url = ssh+git://aur@aur4.archlinux.org/python-mpd2-git/
+[submodule "python2-caldav"]
+	path = python2-caldav
+	url = ssh+git://aur@aur4.archlinux.org/python2-caldav/
+[submodule "zxfer"]
+	path = zxfer
+	url = ssh+git://aur@aur4.archlinux.org/zxfer/
+[submodule "vim_bridge-git"]
+	path = vim_bridge-git
+	url = ssh+git://aur@aur4.archlinux.org/vim_bridge-git/
+[submodule "ruby-netaddr"]
+	path = ruby-netaddr
+	url = ssh+git://aur@aur4.archlinux.org/ruby-netaddr
+[submodule "python2-pushy"]
+	path = python2-pushy
+	url = ssh+git://aur@aur4.archlinux.org/python2-pushy
+[submodule "python-mpd2"]
+	path = python-mpd2
+	url = ssh+git://aur@aur4.archlinux.org/python-mpd2
