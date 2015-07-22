@@ -61,3 +61,6 @@
 [submodule "python-mpd2"]
 	path = python-mpd2
 	url = ssh+git://aur@aur4.archlinux.org/python-mpd2
+[submodule "update-conf.d"]
+	path = update-conf.d
+	url = https://aur4.archlinux.org/update-conf.d.git/
