@@ -1,0 +1,32 @@
+From f3316e279764a2f526047868bf240311deaff958 Mon Sep 17 00:00:00 2001
+From: Seth Forshee <seth.forshee@canonical.com>
+Date: Mon, 27 Jul 2015 08:11:27 -0500
+Subject: [PATCH] UBUNTU: SAUCE: overlayfs: Enable user namespace mounts for
+ the "overlay" fstype
+
+User namespace mounts were mistakenly only enabled for the
+"overlayfs" fstype and not for the "overlay" fstype. This is a
+regression in behavior towards userspace from previous Ubuntu
+kernels and breaks some features of LXC.
+
+BugLink: http://bugs.launchpad.net/bugs/1478578
+Signed-off-by: Seth Forshee <seth.forshee@canonical.com>
+---
+ fs/overlayfs/super.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/fs/overlayfs/super.c b/fs/overlayfs/super.c
+index f6d8507..3181482 100644
+--- a/fs/overlayfs/super.c
++++ b/fs/overlayfs/super.c
+@@ -1099,6 +1099,7 @@ static struct file_system_type ovl_fs_type = {
+ 	.name		= "overlay",
+ 	.mount		= ovl_mount,
+ 	.kill_sb	= kill_anon_super,
++	.fs_flags	= FS_USERNS_MOUNT,
+ };
+ MODULE_ALIAS_FS("overlay");
+ 
+-- 
+1.9.1
+
