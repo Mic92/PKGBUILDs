@@ -64,3 +64,6 @@
 [submodule "update-conf.d"]
 	path = update-conf.d
 	url = https://aur4.archlinux.org/update-conf.d.git/
+[submodule "ruby-rbeautify"]
+	path = ruby-rbeautify
+	url = ssh+git://aur@aur4.archlinux.org/ruby-rbeautify.git/
