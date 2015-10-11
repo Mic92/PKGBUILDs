@@ -67,3 +67,6 @@
 [submodule "ruby-rbeautify"]
 	path = ruby-rbeautify
 	url = ssh+git://aur@aur4.archlinux.org/ruby-rbeautify.git/
+[submodule "ca-certificates-hackint"]
+	path = ca-certificates-hackint
+	url = aur@aur4.archlinux.org:ca-certificates-hackint
